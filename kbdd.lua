@@ -7,9 +7,16 @@ local kbdwidget = wibox.widget.imagebox()
 
 local kbdd = {}
 
+-- Default image path
 local image_path = "/usr/share/icons/kbdd/"
 local layouts = { [0] = "US", [1] = "RU" }
-local icons = { [0] = image_path .. "us.png", [1] = image_path .. "ru.png"  }
+local icons = {}
+
+kbdd.set_icon_dir = function(icon_path)
+    icons = { [0] = icon_path .. "us.png", [1] = icon_path .. "ru.png"  }
+end
+
+kbdd.set_icon_dir(image_path)
 
 dbus.request_name("session", "ru.gentoo.kbdd")
 dbus.add_match("session",
@@ -29,6 +36,7 @@ end
 kbdd.kbdwidget = function ()
     return kbdwidget
 end 
+
 
 -- Set US layout as a default
 kbdtextbox:set_markup(layouts[0])
