@@ -14,6 +14,7 @@ local icons = {}
 
 kbdd.set_icon_dir = function(icon_path)
     icons = { [0] = icon_path .. "us.png", [1] = icon_path .. "ru.png"  }
+    kbdwidget:set_image(icons[0])
 end
 
 kbdd.set_icon_dir(image_path)
